@@ -4,13 +4,13 @@
 # to run: 
 
 
-FIRST 
+FIRST RUN
 
-- $ source ./setup.sh
+- **$ source ./setup.sh**
 
 THEN a few python files should be written in the home directory. 
 
-Change the settings in "init_supermodel.py" and run this file ($ ./init_supermodel.py)
+Change the settings in "init_supermodel.py" and run this file (***$ ./init_supermodel.py***)
 
 
 - $ ./buildmodels.py
