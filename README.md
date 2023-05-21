@@ -3,7 +3,7 @@
 
 # To Run: 
 FIRST:
-- **$ source ./setup.sh** ... this will set up your bash enviroment
+- **$ source ./setup.sh** ... this will set up your bash enviroment and set the CESM_ROOT (currently Francine's sandbox)
 
 NEXT:
 
