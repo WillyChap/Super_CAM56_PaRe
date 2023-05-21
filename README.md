@@ -1,4 +1,4 @@
-# SuperModel
+# CAM5/CAM6 SuperModel
 
 
 # To Run: 
