@@ -5,9 +5,9 @@
 FIRST:
 - **$ source ./setup.sh** ... this will set up your bash enviroment
 
-THEN a few python files should be written in the home directory. 
+THEN a few python files should be written in the current git directory. 
 
-Change the settings in "init_supermodel.py" and run this file (***$ ./init_supermodel.py***)
+Change the settings in the file **"init_supermodel.py"** which are specified with the "#modify" comment and run this file (***$ ./init_supermodel.py***)
 
 This will create python files and you will run:
 
