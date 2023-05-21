@@ -13,7 +13,7 @@ This will create python files and you will run:
 
 - ***$ ./buildmodels.py***
 
-This will create two model instances of CAM5 and CAM6 that have the names you specified in the **setup.sh** script, as well as the necessary source mods and the fake Data Assimilation scripts. 
+This will create two model instances of CAM5 and CAM6 that have the names you specified in the **setup.sh** script, as well as the necessary source mods and the fake Data Assimilation scripts additionally, folders are created in your work directory and scratch directory which do the data handling. 
 
 ## Finally. 
 
@@ -21,4 +21,4 @@ Submit each case individually as you usually do with CAM runs.
 
 ## IF the model crashes
 
-Run ***"./Restart_Model.py"*** and everything should be Gucci. 
+Run ***"./Restart_Model.py"*** and everything should be Gucci, submit the models again
