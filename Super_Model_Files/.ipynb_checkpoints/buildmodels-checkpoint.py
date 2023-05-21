@@ -104,7 +104,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
          
             #xml change all of our shit
 
-            if basecasename =="CAM5_32levs_V2": 
+            if basecasename =="CAM5_MODNAME": 
                 case.set_value("CAM_CONFIG_OPTS","-phys cam5 -nlev 32")
             
             case.set_value("DOUT_S",False)
