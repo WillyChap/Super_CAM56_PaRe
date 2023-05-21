@@ -6,7 +6,7 @@
 
 FIRST RUN
 
-- **$ source ./setup.sh**
+- **$ source ./setup.sh** ... this will set up your bash enviroment
 
 THEN a few python files should be written in the home directory. 
 
