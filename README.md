@@ -10,4 +10,4 @@ FIRST
 
 THEN a few python files should be written in the home directory. 
 
-- $./buildmodels.py
+- $ ./buildmodels.py
