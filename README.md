@@ -11,7 +11,7 @@ Change the settings in the file **"init_supermodel.py"** which are specified wit
 
 THEN: 
 
-a few python files should be written in the current git directory. 
+a few python files should be written in the current git directory. Please run:
 
 - ***$ ./buildmodels.py***
 
