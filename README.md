@@ -16,4 +16,12 @@ This will create python files and you will run:
 
 - ***$ ./buildmodels.py***
 
-This will create two model instances of CAM5 and CAM6 that have the names you specified in the **setup.sh** script. 
+This will create two model instances of CAM5 and CAM6 that have the names you specified in the **setup.sh** script, as well as the necessary source mods and the fake Data Assimilation scripts. 
+
+## Finally. 
+
+Submit each case individually as you usually do with CAM runs. 
+
+## IF the model crashes
+
+Run ***"./Restart_Model.py"*** and everything should be Gucci. 
