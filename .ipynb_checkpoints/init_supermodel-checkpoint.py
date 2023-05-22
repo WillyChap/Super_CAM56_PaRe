@@ -11,7 +11,9 @@ import time
 import glob
 import xarray as xr
 
-
+#####################################################
+####### Mininum USER DEFINED VARIABLES ##############
+#####################################################
 Mod_Cam5_Name = 'CAM5_gotown' #modify
 Mod_Cam6_Name = 'CAM6_gotown' #modify
 
@@ -19,6 +21,10 @@ path_to_work_directory = "/glade/work/wchapman"  #modify
 path_to_scratch_directory = "/glade/scratch/wchapman" #modify
 project_code="P90xP90xP90x" #modify
 path_to_this_directory = os.getcwd()
+#####################################################
+####### Mininum USER DEFINED VARIABLES ##############
+#####################################################
+
 
 def replace_all_strings_in_file(file_path, search_string, replace_string):
     with open(file_path, 'r') as file:
