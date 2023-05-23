@@ -27,17 +27,31 @@ path_to_this_directory = os.getcwd()
 
 
 def replace_all_strings_in_file(file_path, search_string, replace_string):
+    # Open the file in read mode
     with open(file_path, 'r') as file:
+        # Read the content of the file
         content = file.read()
     
+    # Replace all occurrences of the search string with the replace string
     modified_content = content.replace(search_string, replace_string)
     
+    # Open the file in write mode
     with open(file_path, 'w') as file:
+        # Write the modified content back to the file
         file.write(modified_content)
 
-
-
 def _main_func(description):
+    
+    """
+    Main function for performing specific actions related to the provided description.
+    It copies necessary files, replaces strings in files, and changes file permissions.
+
+    Args:
+        description (str): Description of the task.
+
+    Returns:
+        bool: True if the task is successfully completed.
+    """
     
     shutil.copy2('./Super_Model_Files/Fake_DA.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/Restart_Models.py', os.getcwd())
