@@ -59,7 +59,7 @@ def archive_old_files(dir_search ,store_combined_path):
                     print('archiving file: ',fn)
                     if not os.path.exists(store_combined_path):
                         os.makedirs(store_combined_path)
-                    shutil.move(fn,store_combined_path+os.path.basename(fn))
+                    shutil.move(fn,store_combined_path+'/'+os.path.basename(fn))
                 else:
                     os.remove(fn)
 

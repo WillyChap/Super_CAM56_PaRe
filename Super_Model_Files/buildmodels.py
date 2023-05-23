@@ -207,7 +207,7 @@ def _main_func(description):
     basecasename5="CAM5_MODNAME"
     res = "f09_g16"
     compset= "HIST_CAM50_CLM50%SP_CICE%PRES_DOCN%DOM_MOSART_SGLC_SWAV"
-    user_mods_dir="/path/to/this/directory/Source_Mods_Files" #replace path to git directory
+    user_mods_dir="/path/to/this/directory/Source_Mod_Files" #replace path to git directory
     overwrite = True
     caseroot = build_base_case(baseroot, basecasename5, res,
                             compset, overwrite, user_mods_dir,psuedo_obs_dir,project="P54048000",inc_int=inc_int) #replace path /project code
@@ -217,7 +217,7 @@ def _main_func(description):
     basecasename6="CAM6_MODNAME"
     res = "f09_g16"
     compset= "FHIST"
-    user_mods_dir="/path/to/this/directory/Source_Mods_Files" #replace path
+    user_mods_dir="/path/to/this/directory/Source_Mod_Files" #replace path
     overwrite = True
     caseroot = build_base_case(baseroot, basecasename6, res,
                             compset, overwrite, user_mods_dir,psuedo_obs_dir,project="P54048000",inc_int=inc_int) #replace path /project code
