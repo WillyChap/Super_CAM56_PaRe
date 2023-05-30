@@ -19,7 +19,7 @@ This will create two model instances of CAM5 and CAM6 that have the names you sp
 
 ## Finally. 
 
-Submit each case individually as you usually do with CAM runs. 
+To submit both jobs on one active queue: ./bash submit_models.sh
 
 ## IF the model crashes
 
