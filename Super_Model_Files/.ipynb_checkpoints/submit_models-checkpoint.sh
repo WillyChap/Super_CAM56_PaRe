@@ -1,10 +1,10 @@
 #!/bin/bash
 #PBS -N multi_mpi
-#PBS -A P54048000              # change to your account
+#PBS -A P54048000              
 #PBS -l walltime=12:00:00
 #PBS -q regular
 #PBS -j oe
-#PBS -l select=4:ncpus=36:mpiprocs=36   # change to be total number of nodes for both jobs
+#PBS -l select=4:ncpus=36:mpiprocs=36
 
 # Find applications to run
 DIRS=(/path/to/this/directory/CAM5_MODNAME  /path/to/this/directory/CAM6_MODNAME)
