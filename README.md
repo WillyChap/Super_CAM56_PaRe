@@ -19,7 +19,10 @@ This will create two model instances of CAM5 and CAM6 that have the names you sp
 
 ## Finally. 
 
-To submit both jobs on one active queue: **./bash submit_models.sh**
+To submit both jobs on one active queue: **./qsub submit_models.sh**
+
+## A BIG NOTE: 
+THE PBS FILE (submit_models.sh) and the settings in the buildmodels.py have to match! So if you change Job_WALLCLOCK_TIME in one, then you must change it in the other)!!!
 
 ## IF the model crashes
 
