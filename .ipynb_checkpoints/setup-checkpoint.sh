@@ -11,5 +11,5 @@ module load ncarenv/1.3 intel/19.0.5 ncarcompilers/0.5.0 mpt/2.22 netcdf/4.7.3 n
 module load python/3.7.9
 ncar_pylib
 
-export CESM_ROOT=/glade/work/francines/my_cesm_sandbox/
+export CESM_ROOT=/glade/work/wchapman/cesm_supermodel/
 chmod +x init_supermodel.py 
