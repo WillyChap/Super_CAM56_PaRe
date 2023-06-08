@@ -24,6 +24,8 @@ for N in $(seq 0 1); do
     sed -n "$FP,$LP p" $PBS_NODEFILE > my.nodefile
 
     echo "$(date -Is) - Starting application in ${DIRS[$N]}"
+    
+    cp env_batch.xml LockedFiles/
 
     PBS_NODEFILE=my.nodefile ./case.submit --no-batch  &
 
