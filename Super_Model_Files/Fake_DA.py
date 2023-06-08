@@ -40,7 +40,7 @@ def wait_for_files(file1_path, file2_path):
 
     while attempts < max_attempts:
         if os.path.exists(file1_path) and os.path.exists(file2_path):
-            time.sleep(10) 
+            time.sleep(20) 
             print(f"Both files '{file1_path}' and '{file2_path}' exist!")
             return True
         attempts += 1
@@ -241,8 +241,8 @@ def _main_func(description):
         print(bb)
         add_dummy_path(psuedo_obs_dir,inc_int) #needs testing.
         #archive_old_files(psuedo_obs_dir,store_combined_path)
-        print(update_current_time(curr_time_cam5_str,inc_str_cam5))
         print(update_current_time(curr_time_cam6_str,inc_str_cam6))
+        print(update_current_time(curr_time_cam5_str,inc_str_cam5))
 
         
         print('To Do:')
