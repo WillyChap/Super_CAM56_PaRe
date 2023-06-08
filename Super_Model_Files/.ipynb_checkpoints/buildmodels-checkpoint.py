@@ -116,7 +116,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             case.set_value("NTHRDS", 1)
             case.set_value("NTASKS", 72)
             case.set_value("GLC_NCPL", "$ATM_NCPL")
-            
+            case.set_value("BATCH_SYSTEM","none")
             #see https://github.com/ESMCI/cime/issues/3209
             case.set_value("DATA_ASSIMILATION_CYCLES",5)
             case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA.py") #replace path to your git directory
