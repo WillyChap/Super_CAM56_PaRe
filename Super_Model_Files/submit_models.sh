@@ -25,9 +25,7 @@ for N in $(seq 0 1); do
 
     echo "$(date -Is) - Starting application in ${DIRS[$N]}"
     
-    cp env_batch.xml LockedFiles/
-
-    PBS_NODEFILE=my.nodefile ./case.submit --no-batch  &
+    PBS_NODEFILE=${DIRS[$N]}/my.nodefile ./case.submit --no-batch  &
 
     # do the da type stuff
 done
