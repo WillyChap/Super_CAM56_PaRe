@@ -60,6 +60,9 @@ def remove_nc_bin(scratch_path):
     for f in glob.glob(scratch_path+"/*.bin"):
         os.remove(f)
 
+def remove_pseudo_nc(pseudo_path):
+    for f in glob.glob(pseudo_path+"/*_UVT.h1.*.nc"):
+        os.remove(f)
         
 def update_current_time(curr_time_str,modname):
     write_line_to_file(curr_time_str,modname+'.cam.r.1979-01-01-00000.nc')
@@ -101,6 +104,7 @@ def _main_func(description):
 
         remove_nc_bin(cam5_path)
         remove_nc_bin(cam6_path)
+        remove_pseudo_nc(psuedo_obs_dir)
 
         update_current_time(cam5_path+'/current_time_file.txt','CAM5_MODNAME')
         update_current_time(cam6_path+'/current_time_file.txt','CAM6_MODNAME')
