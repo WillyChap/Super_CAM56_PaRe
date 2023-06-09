@@ -30,7 +30,6 @@ psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME' #re
 archive_dir = '/path/to/scratch/directory/store_super_cam5_cam6' #replace path
 cam5_path = scratch_path+'/CAM5_MODNAME/run/' #replace path
 cam6_path = scratch_path+'/CAM6_MODNAME/run/'#replace path
-cam
 
 
 def replace_all_strings_in_file(file_path, search_string, replace_string):
