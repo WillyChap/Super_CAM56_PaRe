@@ -97,7 +97,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
         if not os.path.isdir(caseroot):
             
             case.create(os.path.basename(caseroot), cesmroot, compset, res,
-                        run_unsupported=True, answer="r",walltime="04:00:00",
+                        run_unsupported=True, answer="r",walltime="12:00:00",
                         user_mods_dir=user_mods_dir, pecount=pecount, project=project,machine_name="cheyenne")
             
             # make sure that changing the casename will not affect these variables
@@ -110,7 +110,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             case.set_value("DOUT_S",False)
             case.set_value("STOP_OPTION","nhours")
             case.set_value("STOP_N", inc_int)
-            case.set_value("JOB_QUEUE", "premium")
+            case.set_value("JOB_QUEUE", "regular")
             case.set_value("ROF_NCPL", "$ATM_NCPL")
             case.set_value("GLC_NCPL", "$ATM_NCPL")
             case.set_value("NTHRDS", 1)
@@ -118,7 +118,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             case.set_value("GLC_NCPL", "$ATM_NCPL")
             case.set_value("BATCH_SYSTEM","none")
             #see https://github.com/ESMCI/cime/issues/3209
-            case.set_value("DATA_ASSIMILATION_CYCLES",5)
+            case.set_value("DATA_ASSIMILATION_CYCLES",300)
             case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA.py") #replace path to your git directory
             
             #user_namelist_cam:

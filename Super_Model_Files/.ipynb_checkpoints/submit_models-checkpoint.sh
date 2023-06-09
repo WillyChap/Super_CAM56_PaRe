@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -N multi_mpi
 #PBS -A P54048000              
-#PBS -l walltime=04:00:00
+#PBS -l walltime=12:00:00
 #PBS -q regular
 #PBS -j oe
 #PBS -l select=4:ncpus=36:mpiprocs=36
