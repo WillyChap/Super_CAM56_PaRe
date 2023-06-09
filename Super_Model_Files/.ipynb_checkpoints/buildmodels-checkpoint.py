@@ -199,7 +199,7 @@ def make_findtime(baseroot,basecasename,rundir):
 
 def _main_func(description):
     inc_int=6
-    psuedo_obs_dir='/path/to/work/directory/pseudoobs_V2' #replace path !!!must be your work dir!!!
+    psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM5_MODNAME' #replace path !!!must be your work dir!!!
     create_directory(psuedo_obs_dir)
     safe_copy('/path/to/this/directory/Pseudo_Obs_Files/Template_Nudging_File.nc',psuedo_obs_dir) #replace path git
     
