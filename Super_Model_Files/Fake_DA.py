@@ -12,6 +12,14 @@ import xarray as xr
 
 # to_do:
 # - make a "current_time" file in the run directories.
+# - make a HARD reset file ... which brings everything back to 1979
+# - - Remove *.bin and *.nc from both /scratch/mod/run/ directories
+# - - set CONTINUE_RUN=FALSE
+# - - reset current_time.txt in both /scratch/mod/run/ directories
+# - - remove files *.nc from pseudoobs_V2 
+
+#Probably smart to do: 
+# create a new pseudoobs_dir with each new git instance named after the models.
 
 
 class MaxAttemptsExceeded(Exception):
@@ -80,6 +88,8 @@ def add_dummy_path(psuedo_obs_dir,inc_int):
     # and calculate a new timestamp with an increment of XX hours
     increment_time_6h = inc_hours(latest_file_tim,inc_int)
     # Copy the latest file with a modified filename based on the incremented timestamp
+    print('orig file to copy to dummy: ', latest_file)
+    print('making dummy file: ', latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc')
     shutil.copy(latest_file,latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc') #copy files 
 
     
@@ -236,6 +246,11 @@ def _main_func(description):
         #get h1 files:
         h1_cam5 = rpoint_wait_cam5.replace(".cpl.r.",".cam.h1.")
         h1_cam6 = rpoint_wait_cam6.replace(".cpl.r.",".cam.h1.")
+        
+        print('h1_file5: ',h1_cam5)
+        print('h1_file6: ',h1_cam6)
+        print('inc_str_cam6: ',inc_str_cam6)
+        print('inc_str_cam5: ',inc_str_cam5)
         
         bb = average_two_files(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6)
         print(bb)
