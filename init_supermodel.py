@@ -112,6 +112,9 @@ def _main_func(description):
     st = os.stat('./Restart_Models.py')
     os.chmod('./Restart_Models.py', st.st_mode | stat.S_IEXEC)
     
+    st = os.stat('./HARD_Restart.py')
+    os.chmod('./HARD_Restart.py', st.st_mode | stat.S_IEXEC)
+    
     st = os.stat('./Fake_DA.py')
     os.chmod('./Fake_DA.py', st.st_mode | stat.S_IEXEC)
     
