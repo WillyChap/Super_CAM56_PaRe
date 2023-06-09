@@ -7,7 +7,7 @@ import datetime
 import shutil
 
 scratch_path = '/path/to/scratch/directory/' #replace path
-psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM5_MODNAME' #replace path
+psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME' #replace path
 archive_dir = '/path/to/scratch/directory/store_super_cam5_cam6' #replace path
 cam5_path = scratch_path+'/CAM5_MODNAME/run/' #replace path
 cam6_path = scratch_path+'/CAM6_MODNAME/run/'#replace path
