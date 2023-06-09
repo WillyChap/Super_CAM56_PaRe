@@ -23,9 +23,9 @@ project_code="P90xP90xP90x" #modify
 path_to_this_directory = os.getcwd()
 
 
-job_wallclock_run = "12:00:00" #modify
+job_wallclock_run = "12:00:00" #modify [less than 12:00:00]
 SUPERCAM_cycles = "5" #modify
-JOBS_QUEUE = "regular" #modify
+JOBS_QUEUE = "regular" #modify [regular,economy,premium]]
 #####################################################
 ####### Mininum USER DEFINED VARIABLES ##############
 #####################################################
