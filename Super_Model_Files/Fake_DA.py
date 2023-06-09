@@ -181,7 +181,7 @@ def _main_func(description):
     
     inc_int = 6
     store_combined_path = '/path/to/scratch/directory/store_super_cam5_cam6/'
-    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_V2/'
+    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME'
 
     ###################################
     #cam5 block
