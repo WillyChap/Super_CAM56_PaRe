@@ -9,6 +9,7 @@ import shutil
 import time
 import glob
 import xarray as xr
+import numpy as np
 
 # to_do:
 # - make a "current_time" file in the run directories.
