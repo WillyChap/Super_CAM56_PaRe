@@ -74,9 +74,29 @@ def average_two_files(ps_fp,file1,file2,inc_str):
     DS_template['PS'][:] =  ((DS_f1['PS'] + DS_f2['PS'])/2).values
  
     fout = ps_fp+'test_pseudoobs_UVT.h1.'+inc_str+'.nc'
-    DS_template.to_netcdf(fout,format="NETCDF3_CLASSIC")
+    DS_template.to_netcdf(fout,format="NETCDF3_CLASSIC",mode='w')
    
     return fout 
+
+def check_nudging_file(ps_fp,file1,file2,inc_str):
+    
+    lev_set = np.array([  3.64346569,   7.59481965,  14.35663225,  24.61222   ,
+        35.92325002,  43.19375008,  51.67749897,  61.52049825,
+        73.75095785,  87.82123029, 103.31712663, 121.54724076,
+       142.99403876, 168.22507977, 197.9080867 , 232.82861896,
+       273.91081676, 322.24190235, 379.10090387, 445.9925741 ,
+       524.68717471, 609.77869481, 691.38943031, 763.40448111,
+       820.85836865, 859.53476653, 887.02024892, 912.64454694,
+       936.19839847, 957.48547954, 976.32540739, 992.55609512])
+ 
+    fout = ps_fp+'test_pseudoobs_UVT.h1.'+inc_str+'.nc'
+    
+    DS = xr.open_dataset(fout,decode_times=False)
+    lev_check = np.array(DS['lev'])
+        
+    close = np.allclose(lev_set, lev_check)
+   
+    return close 
 
 def add_dummy_path(psuedo_obs_dir,inc_int):
     list_of_files = glob.glob(psuedo_obs_dir+'/test_pseudoobs_UVT*.nc') # get the latest file in the pseudo obs ...
@@ -254,12 +274,20 @@ def _main_func(description):
         
         bb = average_two_files(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6)
         print(bb)
+        the_goods_are_good = check_nudging_file(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6) #check the nudging file for errors
+        count_avg=0
+        
+        while count_avg < 5 and not the_goods_are_good:
+            print('had to remake the average nudging file'+str(count_avg))
+            time.sleep(4) 
+            bb = average_two_files(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6)
+            the_goods_are_good = check_nudging_file(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6) #check the nudging file for errors
+            count_avg+=1
+       
         add_dummy_path(psuedo_obs_dir,inc_int) #needs testing.
         #archive_old_files(psuedo_obs_dir,store_combined_path)
         print(update_current_time(curr_time_cam6_str,inc_str_cam6))
         print(update_current_time(curr_time_cam5_str,inc_str_cam5))
-
-        
         print('To Do:')
         print('3) remove the dummy path in change the current_time_file.txt')
         print('4) add dummy time to the pseudo obs folder')
