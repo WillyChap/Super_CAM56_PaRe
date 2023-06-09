@@ -55,6 +55,7 @@ def _main_func(description):
     
     shutil.copy2('./Super_Model_Files/Fake_DA.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/Restart_Models.py', os.getcwd())
+    shutil.copy2('./Super_Model_Files/HARD_Restart.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/buildmodels.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/submit_models.sh', os.getcwd())
     
@@ -72,6 +73,13 @@ def _main_func(description):
     replace_all_strings_in_file('./Restart_Models.py','CAM6_MODNAME',Mod_Cam6_Name)
     replace_all_strings_in_file('./Restart_Models.py','P54048000',project_code)
     replace_all_strings_in_file('./Restart_Models.py','/path/to/this/directory',path_to_this_directory)
+    
+    replace_all_strings_in_file('./HARD_Restart.py','/path/to/scratch/directory',path_to_scratch_directory)
+    replace_all_strings_in_file('./HARD_Restart.py','/path/to/work/directory',path_to_work_directory)
+    replace_all_strings_in_file('./HARD_Restart.py','CAM5_MODNAME',Mod_Cam5_Name)
+    replace_all_strings_in_file('./HARD_Restart.py','CAM6_MODNAME',Mod_Cam6_Name)
+    replace_all_strings_in_file('./HARD_Restart.py','P54048000',project_code)
+    replace_all_strings_in_file('./HARD_Restart.py','/path/to/this/directory',path_to_this_directory)
     
     replace_all_strings_in_file('./buildmodels.py','/path/to/scratch/directory',path_to_scratch_directory)
     replace_all_strings_in_file('./buildmodels.py','/path/to/work/directory',path_to_work_directory)
