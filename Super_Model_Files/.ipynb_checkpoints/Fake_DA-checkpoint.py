@@ -278,7 +278,7 @@ def _main_func(description):
         the_goods_are_good = check_nudging_file(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6) #check the nudging file for errors
         count_avg=0
         
-        while count_avg < 5 and not the_goods_are_good:
+        while count_avg < 25 and not the_goods_are_good:
             print('had to remake the average nudging file'+str(count_avg))
             time.sleep(4) 
             bb = average_two_files(psuedo_obs_dir,h1_cam5,h1_cam6,inc_str_cam6)
