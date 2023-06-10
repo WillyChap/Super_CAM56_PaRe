@@ -59,6 +59,7 @@ def _main_func(description):
     """
     
     shutil.copy2('./Super_Model_Files/Fake_DA.py', os.getcwd())
+    shutil.copy2('./Super_Model_Files/Fake_DA_CAM5.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/Restart_Models.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/HARD_Restart.py', os.getcwd())
     shutil.copy2('./Super_Model_Files/buildmodels.py', os.getcwd())
@@ -71,6 +72,13 @@ def _main_func(description):
     replace_all_strings_in_file('./Fake_DA.py','CAM6_MODNAME',Mod_Cam6_Name)
     replace_all_strings_in_file('./Fake_DA.py','P54048000',project_code)
     replace_all_strings_in_file('./Fake_DA.py','/path/to/this/directory',path_to_this_directory)
+    
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','/path/to/scratch/directory',path_to_scratch_directory)
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','/path/to/work/directory',path_to_work_directory)
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','CAM5_MODNAME',Mod_Cam5_Name)
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','CAM6_MODNAME',Mod_Cam6_Name)
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','P54048000',project_code)
+    replace_all_strings_in_file('./Fake_DA_CAM5.py','/path/to/this/directory',path_to_this_directory)
     
     replace_all_strings_in_file('./Restart_Models.py','/path/to/scratch/directory',path_to_scratch_directory)
     replace_all_strings_in_file('./Restart_Models.py','/path/to/work/directory',path_to_work_directory)
@@ -117,6 +125,9 @@ def _main_func(description):
     
     st = os.stat('./Fake_DA.py')
     os.chmod('./Fake_DA.py', st.st_mode | stat.S_IEXEC)
+    
+    st = os.stat('./Fake_DA_CAM5.py')
+    os.chmod('./Fake_DA_CAM5.py', st.st_mode | stat.S_IEXEC)
     
     st = os.stat('./submit_models.sh')
     os.chmod('./submit_models.sh', st.st_mode | stat.S_IEXEC)
