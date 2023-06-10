@@ -105,9 +105,7 @@ def check_nudging_file(ps_fp,file1,file2,inc_str):
    
     return close 
 
-def add_dummy_path_name(psuedo_obs_dir,inc_int):
-    list_of_files = glob.glob(psuedo_obs_dir+'/test_pseudoobs_UVT*.nc') # get the latest file in the pseudo obs ...
-    latest_file = max(list_of_files, key=os.path.getctime)
+def add_dummy_path_name(latest_file,inc_int):
     latest_file_tim = latest_file.split('.')[-2]
     # Extract the relevant timestamp information from the latest file name
     # and calculate a new timestamp with an increment of XX hours
@@ -282,7 +280,9 @@ def _main_func(description):
         print('inc_str_cam5: ',inc_str_cam5)
         
         File1_wait = average_two_files_name(psuedo_obs_dir,inc_str_cam6)
-        File2_wait = add_dummy_path_name(psuedo_obs_dir,inc_int) #needs testing.
+        print('file1_wait: ',File1_wait)
+        File2_wait = add_dummy_path_name(File1_wait,inc_int) #needs testing.
+        print('file2_wait: ',File2_wait)
         
         wait_for_nudging_files(psuedo_obs_dir,File1_wait,File2_wait)
     
