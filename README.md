@@ -27,3 +27,9 @@ THE PBS FILE (submit_models.sh) and the settings in the buildmodels.py have to m
 ## IF the model crashes
 
 Run ***"./Restart_Model.py"*** and everything should be Gucci, submit the models again
+
+## IF YOU WANT TO ERASE AND START OVER: 
+
+Run ***"./HARD_Restart.py"*** but warning this erases data and starts back in 1979
+
+
