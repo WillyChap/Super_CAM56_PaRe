@@ -74,7 +74,7 @@ def average_two_files(ps_fp,file1,file2,inc_str):
     DS_template['Q'][:] =  ((DS_f1['Q'] + DS_f2['Q'])/2).values
     DS_template['PS'][:] =  ((DS_f1['PS'] + DS_f2['PS'])/2).values
  
-    fout = ps_fp+'test_pseudoobs_UVT.h1.'+inc_str+'.nc'
+    fout = ps_fp+'/test_pseudoobs_UVT.h1.'+inc_str+'.nc'
     DS_template.to_netcdf(fout,format="NETCDF3_CLASSIC",mode='w')
    
     return fout 
@@ -181,7 +181,7 @@ def _main_func(description):
     
     inc_int = 6
     store_combined_path = '/path/to/scratch/directory/store_super_cam5_cam6/'
-    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME'
+    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME/'
 
     ###################################
     #cam5 block

@@ -184,7 +184,7 @@ def _main_func(description):
     
     inc_int = 6
     store_combined_path = '/path/to/scratch/directory/store_super_cam5_cam6/'
-    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME'
+    psuedo_obs_dir = '/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME/'
 
     ###################################
     #cam5 block
@@ -284,7 +284,7 @@ def _main_func(description):
         File2_wait = add_dummy_path_name(File1_wait,inc_int) #needs testing.
         print('file2_wait: ',File2_wait)
         
-        wait_for_nudging_files(psuedo_obs_dir,File1_wait,File2_wait)
+        wait_for_nudging_files(File1_wait,File2_wait)
     
     return True
 
