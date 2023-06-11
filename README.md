@@ -1,5 +1,6 @@
 # CAM5/CAM6 SuperModel
 
+Clone this to your home directory ... and run with a bash shell please
 
 # To Run: 
 FIRST:
