@@ -107,9 +107,11 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             if basecasename =="CAM5_MODNAME": 
                 case.set_value("CAM_CONFIG_OPTS","-phys cam5 -nlev 32")
                 case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA_CAM5.py") #replace path to your git directory
+                case.set_value("NTASKS", 72)
                 
             if basecasename =="CAM6_MODNAME":
                 case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA.py") #replace path to your git directory
+                case.set_value("NTASKS", 216)
             
             case.set_value("DOUT_S",False)
             case.set_value("STOP_OPTION","nhours")
@@ -118,7 +120,6 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             case.set_value("ROF_NCPL", "$ATM_NCPL")
             case.set_value("GLC_NCPL", "$ATM_NCPL")
             case.set_value("NTHRDS", 1)
-            case.set_value("NTASKS", 72)
             case.set_value("GLC_NCPL", "$ATM_NCPL")
             case.set_value("BATCH_SYSTEM","none")
             #see https://github.com/ESMCI/cime/issues/3209
