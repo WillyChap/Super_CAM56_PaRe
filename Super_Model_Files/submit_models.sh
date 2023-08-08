@@ -4,7 +4,7 @@
 #PBS -l walltime=12:00:00
 #PBS -q regular
 #PBS -j oe
-#PBS -l select=10:ncpus=36:mpiprocs=36
+#PBS -l select=8:ncpus=36:mpiprocs=36
 
 module purge
 module load ncarenv/1.3 intel/19.0.5 ncarcompilers/0.5.0 mpt/2.22 netcdf/4.7.3 nco/4.9.5 ncl/6.6.2 python/2.7.16
