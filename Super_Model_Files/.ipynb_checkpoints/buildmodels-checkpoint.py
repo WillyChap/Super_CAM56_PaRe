@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os, sys
+import shutil
 
 cesmroot = os.environ.get('CESM_ROOT')
 
@@ -19,12 +20,29 @@ from CIME.utils            import safe_copy
 from argparse              import RawTextHelpFormatter
 from CIME.locked_files          import lock_file, unlock_file
 
-
-def stage_source_mods(case, user_mods_dir):
+###FIX THIS
+def stage_source_mods(case, user_mods_dir,modnam):
     print('Work in Progress... check to see if this works.')
     caseroot = case.get_value("CASEROOT")
     for usermod in glob.iglob(user_mods_dir+"/*.F90"):
-        safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
+        
+        if modnam =="CAM5_MODNAME": 
+            if "cam6" in usermod:
+                continue
+            elif "cam5" in usermod:
+                safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
+                os.rename(caseroot+'/SourceMods/src.cam/atm_comp_mct_cam5.F90', caseroot+'/SourceMods/src.cam/atm_comp_mct.F90')
+            else:
+                safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
+                
+        if modnam =="CAM6_MODNAME": 
+            if "cam6" in usermod:
+                safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
+                os.rename(caseroot+'/SourceMods/src.cam/atm_comp_mct_cam6.F90', caseroot+'/SourceMods/src.cam/atm_comp_mct.F90')
+            elif "cam5" in usermod:
+                continue
+            else:
+                safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
 
 def create_directory(directory_path):
     if not os.path.exists(directory_path):
@@ -50,7 +68,7 @@ def stage_current_time(rundir,modname):
     else: 
         write_line_to_file(fn_curr_time,modname+'.cam.r.1979-01-01-00000.nc')
 
-def per_run_case_updates(case, user_mods_dir, rundir):
+def per_run_case_updates(case, user_mods_dir, rundir,modnam):
     caseroot = case.get_value("CASEROOT")
     basecasename = os.path.basename(caseroot)
     unlock_file("env_case.xml",caseroot=caseroot)
@@ -59,34 +77,17 @@ def per_run_case_updates(case, user_mods_dir, rundir):
     case.flush()
     lock_file("env_case.xml",caseroot=caseroot)
     case.set_value("CONTINUE_RUN",False)
-    #case.set_value("RUN_REFDATE",date)
-    #case.set_value("RUN_STARTDATE",date)
-    #case.set_value("RUN_REFDIR",sdrestdir)
-    #case.set_value("REST_OPTION",'none')
     case.set_value("PROJECT","P54048000") #replace path
-#    dout_s_root = case.get_value("DOUT_S_ROOT")
-#    dout_s_root = os.path.join(os.path.dirname(dout_s_root),casename)
-#    if dout_s_root.startswith("/glade/scratch"):
-#        dout_s_root = dout_s_root.replace("/glade/scratch/","/glade/p/nsc/ncgd0042/")
-#    case.set_value("DOUT_S_ROOT",dout_s_root)
     # restage user_nl files for each run
     for usermod in glob.iglob(user_mods_dir+"/user*"):
         safe_copy(usermod, caseroot)
     case.case_setup()
     
-    stage_source_mods(case, user_mods_dir)
-
-    #stage_refcase(rundir, sdrestdir, date, basecasename)
-    #case.set_value("BATCH_SYSTEM", "none")
-    #safe_copy(os.path.join(caseroot,"env_batch.xml"),os.path.join(caseroot,"LockedFiles","env_batch.xml"))
-    # this doesnt appear to work correctly
-#    unlock_file("env_batch.xml",caseroot=caseroot)
-#    case.flush()
-#    lock_file("env_batch.xml",caseroot=caseroot)
+    stage_source_mods(case, user_mods_dir,modnam)
 
 
 def build_base_case(baseroot, basecasename,res, compset, overwrite,
-                    user_mods_dir,psuedo_obs_dir, project, pecount=None,inc_int=6):
+                    user_mods_dir,psuedo_obs_dir, project, pecount=None,inc_int=24):
     
     caseroot = os.path.join(baseroot,basecasename)
 
@@ -106,11 +107,9 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
 
             if basecasename =="CAM5_MODNAME": 
                 case.set_value("CAM_CONFIG_OPTS","-phys cam5 -nlev 32")
-                case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA_CAM5.py") #replace path to your git directory
                 case.set_value("NTASKS", 72)
                 
             if basecasename =="CAM6_MODNAME":
-                case.set_value("DATA_ASSIMILATION_SCRIPT","/path/to/this/directory/Fake_DA.py") #replace path to your git directory
                 case.set_value("NTASKS", 216)
             
             case.set_value("DOUT_S",False)
@@ -123,13 +122,12 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             case.set_value("GLC_NCPL", "$ATM_NCPL")
             case.set_value("BATCH_SYSTEM","none")
             #see https://github.com/ESMCI/cime/issues/3209
-            case.set_value("DATA_ASSIMILATION_CYCLES",300)
             
             #user_namelist_cam:
             #case.set_value("CLM_NAMELIST_OPTS", "use_init_interp=.true.")
 
         rundir = case.get_value("RUNDIR")
-        per_run_case_updates(case, user_mods_dir, rundir)
+        per_run_case_updates(case, user_mods_dir, rundir,basecasename)
         update_namelist(baseroot,basecasename,psuedo_obs_dir,inc_int)
         stage_current_time(rundir,basecasename)
         print('...building case...')
@@ -202,7 +200,7 @@ def make_findtime(baseroot,basecasename,rundir):
             file.write(line + "\n")
 
 def _main_func(description):
-    inc_int=6
+    inc_int=24
     psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME' #replace path !!!must be your work dir!!!
     create_directory(psuedo_obs_dir)
     safe_copy('/path/to/this/directory/Pseudo_Obs_Files/Template_Nudging_File.nc',psuedo_obs_dir) #replace path git
@@ -232,6 +230,9 @@ def _main_func(description):
     
     #to do! 
     #replace all of the file paths in the "Fake_DA.py" path and write it to this directory. 
+    
+    shutil.copy2(baseroot+'/Fake_DA.py', '/path/to/scratch/directory/CAM6_MODNAME/run/')
+    shutil.copy2(baseroot+'/Fake_DA_CAM5.py', '/path/to/scratch/directory/CAM5_MODNAME/run/')
 
     
 

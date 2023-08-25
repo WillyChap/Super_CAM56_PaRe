@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os, sys
-import shutil
 
 cesmroot = os.environ.get('CESM_ROOT')
 
@@ -26,7 +25,7 @@ def stage_source_mods(case, user_mods_dir,modnam):
     caseroot = case.get_value("CASEROOT")
     for usermod in glob.iglob(user_mods_dir+"/*.F90"):
         
-        if modnam =="CAM5_MODNAME": 
+        if modnam =="CAM5_prb1": 
             if "cam6" in usermod:
                 continue
             elif "cam5" in usermod:
@@ -35,7 +34,7 @@ def stage_source_mods(case, user_mods_dir,modnam):
             else:
                 safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
                 
-        if modnam =="CAM6_MODNAME": 
+        if modnam =="CAM6_prb1": 
             if "cam6" in usermod:
                 safe_copy(usermod, caseroot+'/SourceMods/src.cam/')
                 os.rename(caseroot+'/SourceMods/src.cam/atm_comp_mct_cam6.F90', caseroot+'/SourceMods/src.cam/atm_comp_mct.F90')
@@ -105,11 +104,11 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
          
             #xml change all of our shit
 
-            if basecasename =="CAM5_MODNAME": 
+            if basecasename =="CAM5_prb1": 
                 case.set_value("CAM_CONFIG_OPTS","-phys cam5 -nlev 32")
                 case.set_value("NTASKS", 72)
                 
-            if basecasename =="CAM6_MODNAME":
+            if basecasename =="CAM6_prb1":
                 case.set_value("NTASKS", 216)
             
             case.set_value("DOUT_S",False)
@@ -200,39 +199,36 @@ def make_findtime(baseroot,basecasename,rundir):
             file.write(line + "\n")
 
 def _main_func(description):
-    inc_int=24
-    psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME' #replace path !!!must be your work dir!!!
+    inc_int=6
+    psuedo_obs_dir='/glade/work/wchapman/pseudoobs_CAM5_prb1_CAM6_prb1' #replace path !!!must be your work dir!!!
     create_directory(psuedo_obs_dir)
-    safe_copy('/path/to/this/directory/Pseudo_Obs_Files/Template_Nudging_File.nc',psuedo_obs_dir) #replace path git
+    safe_copy('/glade/u/home/wchapman/Super_CAM56_PaRe/Pseudo_Obs_Files/Template_Nudging_File.nc',psuedo_obs_dir) #replace path git
     
-    archive_dir = '/path/to/scratch/directory/store_super_cam5_cam6' #replace path !!!must be your scratch dir!!!
+    archive_dir = '/glade/scratch/wchapman/store_super_cam5_cam6' #replace path !!!must be your scratch dir!!!
     create_directory(archive_dir)
     
     #one -- CAM5
-    baseroot="/path/to/this/directory" #replace path
-    basecasename5="CAM5_MODNAME"
+    baseroot="/glade/u/home/wchapman/Super_CAM56_PaRe" #replace path
+    basecasename5="CAM5_prb1"
     res = "f09_g16"
     compset= "HIST_CAM50_CLM50%SP_CICE%PRES_DOCN%DOM_MOSART_SGLC_SWAV"
-    user_mods_dir="/path/to/this/directory/Source_Mod_Files" #replace path to git directory
+    user_mods_dir="/glade/u/home/wchapman/Super_CAM56_PaRe/Source_Mod_Files" #replace path to git directory
     overwrite = True
     caseroot = build_base_case(baseroot, basecasename5, res,
                             compset, overwrite, user_mods_dir,psuedo_obs_dir,project="P54048000",inc_int=inc_int) #replace path /project code
     
     #two -- CAM6
-    baseroot="/path/to/this/directory" #replace path
-    basecasename6="CAM6_MODNAME"
+    baseroot="/glade/u/home/wchapman/Super_CAM56_PaRe" #replace path
+    basecasename6="CAM6_prb1"
     res = "f09_g16"
     compset= "FHIST"
-    user_mods_dir="/path/to/this/directory/Source_Mod_Files" #replace path
+    user_mods_dir="/glade/u/home/wchapman/Super_CAM56_PaRe/Source_Mod_Files" #replace path
     overwrite = True
     caseroot = build_base_case(baseroot, basecasename6, res,
                             compset, overwrite, user_mods_dir,psuedo_obs_dir,project="P54048000",inc_int=inc_int) #replace path /project code
     
     #to do! 
     #replace all of the file paths in the "Fake_DA.py" path and write it to this directory. 
-    
-    shutil.copy2(baseroot+'/Fake_DA.py', '/path/to/scratch/directory/CAM6_MODNAME/run/')
-    shutil.copy2(baseroot+'/Fake_DA_CAM5.py', '/path/to/scratch/directory/CAM5_MODNAME/run/')
 
     
 

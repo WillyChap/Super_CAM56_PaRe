@@ -14,17 +14,16 @@ import xarray as xr
 #####################################################
 ####### Mininum USER DEFINED VARIABLES ##############
 #####################################################
-Mod_Cam5_Name = 'CAM5_gotown' #modify
-Mod_Cam6_Name = 'CAM6_gotown' #modify
+Mod_Cam5_Name = 'CAM5_prb1' #modify
+Mod_Cam6_Name = 'CAM6_prb1' #modify
 
 path_to_work_directory = "/glade/work/wchapman"  #modify
 path_to_scratch_directory = "/glade/scratch/wchapman" #modify
-project_code="P90xP90xP90x" #modify
+project_code="P54048000" #modify
 path_to_this_directory = os.getcwd()
 
 
 job_wallclock_run = "12:00:00" #modify [less than 12:00:00]
-SUPERCAM_cycles = "5" #modify
 JOBS_QUEUE = "regular" #modify [regular,economy,premium]]
 #####################################################
 ####### Mininum USER DEFINED VARIABLES ##############
@@ -102,7 +101,6 @@ def _main_func(description):
     replace_all_strings_in_file('./buildmodels.py','/path/to/this/directory',path_to_this_directory)
     replace_all_strings_in_file('./buildmodels.py','12:00:00',job_wallclock_run)
     replace_all_strings_in_file('./buildmodels.py','regular',JOBS_QUEUE)
-    replace_all_strings_in_file('./buildmodels.py','300',SUPERCAM_cycles)
     
     
     replace_all_strings_in_file('./submit_models.sh','/path/to/scratch/directory',path_to_scratch_directory)
