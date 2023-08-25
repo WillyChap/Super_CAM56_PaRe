@@ -446,6 +446,18 @@ CONTAINS
             yr_spec=yr_sync, mon_spec=mon_sync, day_spec=day_sync, sec_spec=tod_sync)
        call t_stopf  ('CAM_run4')
 
+       ! Advance cam time step
+
+       call t_startf ('CAM_adv_timestep')
+       call advance_timestep()
+       call t_stopf  ('CAM_adv_timestep')
+
+       ! Run cam radiation/clouds (run1)
+
+       call t_startf ('CAM_run1')
+       call cam_run1 ( cam_in, cam_out )
+       call t_stopf  ('CAM_run1')
+       
 #ifdef PAUSERESUME 
        if (mod(tod_sync,6*60*60).eq.0) then !! sixhourly 
           if (masterproc)then
@@ -463,18 +475,6 @@ CONTAINS
           end if
        end if
 #endif 
-
-       ! Advance cam time step
-
-       call t_startf ('CAM_adv_timestep')
-       call advance_timestep()
-       call t_stopf  ('CAM_adv_timestep')
-
-       ! Run cam radiation/clouds (run1)
-
-       call t_startf ('CAM_run1')
-       call cam_run1 ( cam_in, cam_out )
-       call t_stopf  ('CAM_run1')
 
        ! Map output from cam to mct data structures
 
