@@ -12,8 +12,8 @@ module load python/3.7.9
 ncar_pylib
 
 
-touch /path/to/scratch/directory/run/CAM5_MODNAME/PAUSE_INIT
-touch /path/to/scratch/directory/run/CAM6_MODNAME/PAUSE_INIT
+touch /path/to/scratch/directory/CAM5_MODNAME/run/PAUSE_INIT
+touch /path/to/scratch/directory/CAM6_MODNAME/run/PAUSE_INIT
 
 
 # Find applications to run
