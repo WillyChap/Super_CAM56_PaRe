@@ -46,23 +46,14 @@ def replace_all_strings_in_file(file_path, search_string, replace_string):
         file.write(modified_content)
         
         
-def replace_all_strings_in_file(file_path, search_string, replace_string):
-    # Open the file in read mode
+def replace_int_in_file(file_path, search_int, replace_int):
     with open(file_path, 'r') as file:
-        # Read the content of the file
-        content = file.read()
-    
-    # Convert replace_string to a string if it's an integer
-    if isinstance(replace_string, int):
-        replace_string = str(replace_string)
-    
-    # Replace all occurrences of the search string with the replace string
-    modified_content = content.replace(search_string, replace_string)
-    
-    # Open the file in write mode
+        lines = file.readlines()
+
     with open(file_path, 'w') as file:
-        # Write the modified content back to the file
-        file.write(modified_content)
+        for line in lines:
+            new_line = line.replace(str(search_int), str(replace_int))
+            file.write(new_line)
 
 def _main_func(description):
     
@@ -121,7 +112,7 @@ def _main_func(description):
     replace_all_strings_in_file('./buildmodels.py','/path/to/this/directory',path_to_this_directory)
     replace_all_strings_in_file('./buildmodels.py','12:00:00',job_wallclock_run)
     replace_all_strings_in_file('./buildmodels.py','regular',JOBS_QUEUE)
-    replace_all_strings_in_file('./buildmodels.py','NHOURS',N_Hours)
+    replace_int_in_file('./buildmodels.py',6900420,N_Hours)
     
     
     replace_all_strings_in_file('./submit_models.sh','/path/to/scratch/directory',path_to_scratch_directory)
