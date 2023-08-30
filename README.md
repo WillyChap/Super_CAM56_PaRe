@@ -1,5 +1,7 @@
-# CAM5/CAM6 SuperModel
+#A NCAR CAM5/CAM6 SuperModel
 
+
+Right now this only works on the NCAR machines, if there is enough community interest, I would be happy to work on porting it to other systems. 
 Clone this to your home directory ... and run with a bash shell please
 
 # To Run: 
@@ -21,6 +23,12 @@ This will create two model instances of CAM5 and CAM6 that have the names you sp
 ## Finally. 
 
 To submit both jobs on one active queue: **qsub ./submit_models.sh**
+
+## What is a supermodel? 
+
+[See our paper](https://journals.ametsoc.org/view/journals/bams/aop/BAMS-D-22-0070.1/BAMS-D-22-0070.1.xml). The modeling of weather and climate has been a success story. The skill of forecasts continues to improve and model biases continue to decrease. Combining the output of multiple models has further improved forecast skill and reduced biases. But are we exploiting the full capacity of state-of-the-art models in making forecasts and projections? Supermodeling is a recent step forward in the multi-model ensemble approach. Instead of combining model output after the simulations are completed, in a supermodel individual models exchange state information as they run, influencing each other’s behavior. By learning the optimal parameters that determine how models influence each other based on past observations, model errors are reduced at an early stage before they propagate into larger scales and affect other regions and variables. The models synchronize on a common solution that through learning remains closer to the observed evolution. Effectively a new dynamical system has been created, a supermodel, that optimally combines the strengths of the constituent models. The supermodel approach has the potential to rapidly improve current state-of-the-art weather forecasts and climate predictions. In this paper we introduce supermodeling, demonstrate its potential in examples of various complexity and discuss learning strategies. We conclude with a discussion of remaining challenges for a successful application of supermodeling in the context of state-of-the-art models. The supermodeling approach is not limited to the modeling of weather and climate, but can be applied to improve the prediction capabilities of any complex system, for which a set of different models exist. 
+
+In this instance we have coupled CAM5 and CAM6 in order exchange state information. Happy supermodeling! 
 
 ## A BIG NOTE: 
 THE PBS FILE (submit_models.sh) and the settings in the buildmodels.py have to match! So if you change Job_WALLCLOCK_TIME in one, then you must change it in the other)!!!
