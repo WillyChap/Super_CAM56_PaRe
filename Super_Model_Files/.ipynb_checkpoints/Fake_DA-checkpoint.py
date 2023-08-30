@@ -198,8 +198,8 @@ def _main_func(description):
     if os.path.exists(Pause_init_file):
         print("Path exists. Exiting the program.")
         os.remove(Pause_init_file)
-        os.remove('/path/to/scratch/directory/CAM6_MODNAME/run/PAUSE')
-        sys.exit(0)  # Exit with a success status code
+        #os.remove('/path/to/scratch/directory/CAM6_MODNAME/run/PAUSE')
+        #sys.exit(0)  # Exit with a success status code
     else:
         print("Path does not exist. Continuing with the program.")
 
@@ -305,6 +305,8 @@ def _main_func(description):
         print('3) remove the dummy path in change the current_time_file.txt')
         print('4) add dummy time to the pseudo obs folder')
         print('5) stage the source mod files for build... MAYBE DONE..TEST')
+        time.sleep(5) 
+        os.remove('/path/to/scratch/directory/CAM6_MODNAME/run/PAUSE')
     
     return True
 

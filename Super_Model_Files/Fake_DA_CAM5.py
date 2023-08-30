@@ -194,8 +194,8 @@ def _main_func(description):
     if os.path.exists(Pause_init_file):
         print("Path exists. Exiting the program.")
         os.remove(Pause_init_file)
-        os.remove('/path/to/scratch/directory/CAM5_MODNAME/run/PAUSE')
-        sys.exit(0)  # Exit with a success status code
+        #os.remove('/path/to/scratch/directory/CAM5_MODNAME/run/PAUSE')
+        #sys.exit(0)  # Exit with a success status code
     else:
         print("Path does not exist. Continuing with the program.")
 
@@ -295,6 +295,8 @@ def _main_func(description):
         print('file2_wait: ',File2_wait)
         
         wait_for_nudging_files(File1_wait,File2_wait)
+        time.sleep(5) 
+        os.remove('/path/to/scratch/directory/CAM5_MODNAME/run/PAUSE')
     
     return True
 
