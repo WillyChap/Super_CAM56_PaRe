@@ -193,6 +193,17 @@ def _main_func(description):
     It then defines a CAM restart file to wait to arrive
     """
     
+    Pause_init_file = '/path/to/scratch/directory/CAM6_MODNAME/run/PAUSE_INIT'
+    
+    if os.path.exists(Pause_init_file):
+        print("Path exists. Exiting the program.")
+        os.remove(Pause_init_file)
+        sys.exit(0)  # Exit with a success status code
+    else:
+        print("Path does not exist. Continuing with the program.")
+
+    
+    
     curr_time_cam5_str = '/path/to/scratch/directory/CAM5_MODNAME/run/current_time_file.txt'
     run_dir_path_cam5 = '/path/to/scratch/directory/CAM5_MODNAME/run/'
     

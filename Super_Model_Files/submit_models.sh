@@ -11,6 +11,11 @@ module load ncarenv/1.3 intel/19.0.5 ncarcompilers/0.5.0 mpt/2.22 netcdf/4.7.3 n
 module load python/3.7.9
 ncar_pylib
 
+
+touch /path/to/scratch/directory/run/CAM5_MODNAME/PAUSE_INIT
+touch /path/to/scratch/directory/run/CAM6_MODNAME/PAUSE_INIT
+
+
 # Find applications to run
 DIRS=(/path/to/this/directory/CAM5_MODNAME  /path/to/this/directory/CAM6_MODNAME)
 

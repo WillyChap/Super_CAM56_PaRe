@@ -189,6 +189,15 @@ def _main_func(description):
     ###################################
     #cam5 block
     ###################################
+    Pause_init_file = '/path/to/scratch/directory/CAM5_MODNAME/run/PAUSE_INIT'
+    
+    if os.path.exists(Pause_init_file):
+        print("Path exists. Exiting the program.")
+        os.remove(Pause_init_file)
+        sys.exit(0)  # Exit with a success status code
+    else:
+        print("Path does not exist. Continuing with the program.")
+
     
     """
     This block is used to read the current_time_file 
