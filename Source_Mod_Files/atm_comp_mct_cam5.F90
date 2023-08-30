@@ -458,6 +458,13 @@ CONTAINS
        call cam_run1 ( cam_in, cam_out )
        call t_stopf  ('CAM_run1')
        
+
+       ! Map output from cam to mct data structures
+
+       call t_startf ('CAM_export')
+       call atm_export( cam_out, a2x_a%rattr )
+       call t_stopf ('CAM_export')
+       
 #ifdef PAUSERESUME 
        if (mod(tod_sync,6*60*60).eq.0) then !! sixhourly 
           if (masterproc)then
@@ -475,12 +482,6 @@ CONTAINS
           end if
        end if
 #endif 
-
-       ! Map output from cam to mct data structures
-
-       call t_startf ('CAM_export')
-       call atm_export( cam_out, a2x_a%rattr )
-       call t_stopf ('CAM_export')
 
     end do
 
