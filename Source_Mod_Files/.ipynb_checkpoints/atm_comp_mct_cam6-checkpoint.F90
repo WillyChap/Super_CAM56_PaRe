@@ -445,24 +445,6 @@ CONTAINS
        call cam_run4( cam_out, cam_in, rstwr, nlend, &
             yr_spec=yr_sync, mon_spec=mon_sync, day_spec=day_sync, sec_spec=tod_sync)
        call t_stopf  ('CAM_run4')
-
-       ! Advance cam time step
-
-       call t_startf ('CAM_adv_timestep')
-       call advance_timestep()
-       call t_stopf  ('CAM_adv_timestep')
-
-       ! Run cam radiation/clouds (run1)
-
-       call t_startf ('CAM_run1')
-       call cam_run1 ( cam_in, cam_out )
-       call t_stopf  ('CAM_run1')
-       
-       ! Map output from cam to mct data structures
-
-       call t_startf ('CAM_export')
-       call atm_export( cam_out, a2x_a%rattr )
-       call t_stopf ('CAM_export')
        
        
 #ifdef PAUSERESUME 
@@ -482,6 +464,25 @@ CONTAINS
           end if
        end if
 #endif 
+
+       ! Advance cam time step
+
+       call t_startf ('CAM_adv_timestep')
+       call advance_timestep()
+       call t_stopf  ('CAM_adv_timestep')
+
+       ! Run cam radiation/clouds (run1)
+
+       call t_startf ('CAM_run1')
+       call cam_run1 ( cam_in, cam_out )
+       call t_stopf  ('CAM_run1')
+       
+       ! Map output from cam to mct data structures
+
+       call t_startf ('CAM_export')
+       call atm_export( cam_out, a2x_a%rattr )
+       call t_stopf ('CAM_export')
+       
 
     end do
 

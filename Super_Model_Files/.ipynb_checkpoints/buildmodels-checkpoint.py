@@ -87,7 +87,7 @@ def per_run_case_updates(case, user_mods_dir, rundir,modnam):
 
 
 def build_base_case(baseroot, basecasename,res, compset, overwrite,
-                    user_mods_dir,psuedo_obs_dir, project, pecount=None,inc_int=24):
+                    user_mods_dir,psuedo_obs_dir, project, pecount=None,inc_int=6):
     
     caseroot = os.path.join(baseroot,basecasename)
 
@@ -114,7 +114,7 @@ def build_base_case(baseroot, basecasename,res, compset, overwrite,
             
             case.set_value("DOUT_S",False)
             case.set_value("STOP_OPTION","nhours")
-            case.set_value("STOP_N", inc_int)
+            case.set_value("STOP_N", 'NHOURS')
             case.set_value("JOB_QUEUE", "regular")
             case.set_value("ROF_NCPL", "$ATM_NCPL")
             case.set_value("GLC_NCPL", "$ATM_NCPL")
@@ -200,7 +200,7 @@ def make_findtime(baseroot,basecasename,rundir):
             file.write(line + "\n")
 
 def _main_func(description):
-    inc_int=24
+    inc_int=6
     psuedo_obs_dir='/path/to/work/directory/pseudoobs_CAM5_MODNAME_CAM6_MODNAME' #replace path !!!must be your work dir!!!
     create_directory(psuedo_obs_dir)
     safe_copy('/path/to/this/directory/Pseudo_Obs_Files/Template_Nudging_File.nc',psuedo_obs_dir) #replace path git
