@@ -217,7 +217,7 @@ def _main_func(description):
     inc_str_cam5 = inc_hours(curr_time_cam5,inc_int)
     
     #we are waiting for this file!! 
-    rpoint_wait_cam5 = run_dir_path_cam5 + 'CAM5_MODNAME.cpl.r.'+inc_str_cam5+'.nc'
+    rpoint_wait_cam5 = run_dir_path_cam5 + 'CAM5_MODNAME.cam.h1.'+inc_str_cam5+'.nc'
     
     for dat_path in sorted(glob.glob(run_dir_path_cam5+'/rpointer*')):
         with open(dat_path, 'r') as file:
@@ -249,7 +249,7 @@ def _main_func(description):
     inc_str_cam6 = inc_hours(curr_time_cam6,inc_int)
     
     #we are waiting for this file!! 
-    rpoint_wait_cam6 = run_dir_path_cam6 + 'CAM6_MODNAME.cpl.r.'+inc_str_cam6+'.nc'
+    rpoint_wait_cam6 = run_dir_path_cam6 + 'CAM6_MODNAME.cam.h1.'+inc_str_cam6+'.nc'
     
     for dat_path in sorted(glob.glob(run_dir_path_cam6+'/rpointer*')):
         with open(dat_path, 'r') as file:
@@ -277,8 +277,8 @@ def _main_func(description):
     if found:
         
         #get h1 files:
-        h1_cam5 = rpoint_wait_cam5.replace(".cpl.r.",".cam.h1.")
-        h1_cam6 = rpoint_wait_cam6.replace(".cpl.r.",".cam.h1.")
+        h1_cam5 = rpoint_wait_cam5.replace(".cam.h1.",".cam.h1.")
+        h1_cam6 = rpoint_wait_cam6.replace(".cam.h1.",".cam.h1.")
         
         print('h1_file5: ',h1_cam5)
         print('h1_file6: ',h1_cam6)
