@@ -114,6 +114,13 @@ def add_dummy_path_name(latest_file,inc_int):
     print('orig file to copy to dummy: ', latest_file)
     print('making looking for dummy file: ', latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc')
     fout = latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc'
+    
+    
+    increment_time_6h = inc_hours(increment_time_6h,inc_int)
+    # Copy the latest file with a modified filename based on the incremented timestamp
+    print('orig file to copy to dummy: ', latest_file)
+    print('making looking for dummy file: ', latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc')
+    
     return fout
 
     

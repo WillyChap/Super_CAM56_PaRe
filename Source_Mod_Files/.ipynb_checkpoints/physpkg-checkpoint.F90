@@ -1541,6 +1541,7 @@ contains
     !  call physics_update(state,ptend,ztodt,tend)
     !  call check_energy_chng(state, tend, "nudging", nstep, ztodt, zero, zero, zero, zero)
     !endif
+    !TODO: add my re-read the state function here: 
 
     !+++ WEC
     if((Nudge_Model).and.(Nudge_ON)) then
