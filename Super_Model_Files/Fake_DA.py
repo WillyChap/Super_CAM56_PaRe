@@ -112,6 +112,13 @@ def add_dummy_path(psuedo_obs_dir,inc_int):
     print('orig file to copy to dummy: ', latest_file)
     print('making dummy file: ', latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc')
     shutil.copy(latest_file,latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc') #copy files 
+    
+    increment_time_6h = inc_hours(increment_time_6h,inc_int)
+    # Copy the latest file with a modified filename based on the incremented timestamp
+    print('orig file to copy to dummy: ', latest_file)
+    print('making dummy file: ', latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc')
+    shutil.copy(latest_file,latest_file.split('.h1.')[0]+'.h1.'+increment_time_6h+'.nc') #copy files 
+
 
     
 
